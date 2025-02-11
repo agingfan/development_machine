@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.min.css">
-
 # 開発環境構築リポジトリ
 
 ## 概要
@@ -10,12 +8,25 @@
 
 ## 目次
 
-- [共通事項](#anchor-1)
-- [事前準備](#anchor-2)
-- [構築環境の詳細](#anchor-3)
-- [環境構築の進め方](#anchor-4)
-- [etc](#anchor-5)
-- [参考リンク](#anchor-6)
+- [開発環境構築リポジトリ](#開発環境構築リポジトリ)
+  - [概要](#概要)
+  - [目次](#目次)
+  - [共通事項](#共通事項)
+  - [事前準備](#事前準備)
+  - [構築環境の詳細](#構築環境の詳細)
+    - [Mac OS環境のインストールリスト](#mac-os環境のインストールリスト)
+    - [ターミナルの変更](#ターミナルの変更)
+  - [環境構築の進め方](#環境構築の進め方)
+    - [Mac OS](#mac-os)
+      - [Apple Chip](#apple-chip)
+      - [Intel Chip](#intel-chip)
+    - [Iceberg (ターミナルのプロファイルを変更)](#iceberg-ターミナルのプロファイルを変更)
+      - [上記スクリプト実行後に下記手順で設定を変更していく。](#上記スクリプト実行後に下記手順で設定を変更していく)
+      - [変更前](#変更前)
+      - [変更後](#変更後)
+  - [etc](#etc)
+    - [FileZillaをインストール](#filezillaをインストール)
+  - [参考リンク](#参考リンク)
 
 <a id="anchor-1"></a>
 
@@ -24,13 +35,9 @@
 - Gitに関して
   - /docs/README.git.md
 
-<a id="anchor-2"></a>
-
 ## 事前準備
 
 - Mac : 特になし
-
-<a id="anchor-3"></a>
 
 ## 構築環境の詳細
 
@@ -187,16 +194,12 @@ zstyle ':prezto:load' pmodule \
   'prompt'
 ~~~
 
-<a id="anchor-5"></a>
-
 ## etc
 
 ### FileZillaをインストール
 
 FileZillaは現在brewからのインストールができなくなっているためインストールはは下記サイトから
 [FileZilla](https://filezilla-project.org/download.php?type=client)
-
-<a id="anchor-6"></a>
 
 ## 参考リンク
 
