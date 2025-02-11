@@ -1,6 +1,4 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.min.css">
-
-# Gitの運用ルール
+# 採用Gitの運用ルール
 
 ## 概要
 
@@ -8,85 +6,68 @@
 
 ## 目次
 
-- [ブランチ一覧](#anchor-1)
-- [ブランチルール](#anchor-2)
-- [ブランチ命名規則](#anchor-3)
-- [タグルール](#anchor-4)
-- [コミットメッセージルール](#anchor-5)
-- [参考リンク](#anchor-6)
-
-<a id="anchor-1"></a>
+- [採用Gitの運用ルール](#採用gitの運用ルール)
+  - [概要](#概要)
+  - [目次](#目次)
+  - [ブランチ一覧](#ブランチ一覧)
+  - [ブランチ命名規則](#ブランチ命名規則)
+  - [タグルール](#タグルール)
+  - [コミットメッセージルール](#コミットメッセージルール)
+  - [参考リンク](#参考リンク)
 
 ## ブランチ一覧
 
-- main
-- hotfix
-- release branches
-- develop
-- feature branches
-
-<a id="anchor-2"></a>
-
-## ブランチルール
-
-- developはmainの最新から作成
-- featureはdevelopの最新から作成
-- releaseはリリース対象featureマージ済developの最新から作成
-- 各featureのマージ先はdevelop
-- releaseはリリース時のバージョン調整などに使用
-- リリースモジュールはmainから作成
-- リリースバージョンが上がるタイミングでreleaseからmainにマージ
-- マージ済featureは削除
-- hotfixは致命的バグが発生した場合に使用
-
-<a id="anchor-3"></a>
+| ブランチ名 | ブランチ戦略 | 役割 | 適用ルール |
+| :--- | :--- | :--- | :--- |
+| main | 本番リリースブランチ | 本番環境適用 | 保護ブランチ、プッシュ禁止 |
+| develop | デフォルトブランチ | - | 保護ブランチ、プッシュ禁止、デフォルトブランチ、ブランチ削除禁止 |
+| feature | 作業ブランチ | 新規機能、追加機能、機能改善 | developへマージ後に削除 |
+| hotfix | 作業ブランチ | バグ改修、バグフィックスリリースブランチ、ステージング環境適用 | ブランチ削除禁止 |
+| release | ステージングリリースブランチ | ステージング環境適用 | ブランチ削除禁止 |
 
 ## ブランチ命名規則
 
-- feature branches : feature/add_new_function/[issue番号] or feature/functional_improvement/[issue番号]
-- release branches : release/[tagバージョン]
-- hotfix : hotfix/[tagバージョン]
-
-<a id="anchor-4"></a>
+| ブランチ種類 | 命名規約 | 備考 |
+| :--- | :--- | :--- |
+| feature | feature/[user name]/[issue番号]-new-[概略] | 新規機能 |
+| feature | feature/[user name]/[issue番号]-add-[概略] | 追加機能 |
+| feature | feature/[user name]/[issue番号]-improvement-[概略] | 機能改善 |
+| hotfix | hotfix/[tagバージョン] | 本番環境リリース後につけるtagバージョンをつける(パッチバージョン) |
+| release | release/[tagバージョン] | 本番環境リリース後につけるtagバージョンをつける |
 
 ## タグルール
 
-- メジャーバージョン・マイナーバージョン・累積バージョンで記載する
-  - メジャーバージョン
-    - add_new_function時に数字を上げるメジャーバージョンを上げた場合はマイナーバージョン・累積バージョンは0に戻す
-  - マイナーバージョン
-    - functional_improvement時に数字を上げるマイナーバージョンを上げた場合は累積バージョンは0に戻す
-  - 累積バージョン
-    - hotfix時に数字を上げる
+| バージョニング種類 | バージョン上昇ルール | 備考 |
+| :--- | :--- | :--- |
+| メジャー | 新規機能追加、破壊的変更 | マイナー、パッチバージョンを0へ戻す |
+| マイナー | 追加機能、機能改善 | パッチバージョンは0へ戻す |
+| パッチ | バグ改修 | - |
 
-<a id="anchor-5"></a>
 
 ## コミットメッセージルール
 
 コミットメッセージにはコミットの内容を理解しやすくするためにプレフィックスを付けます。
 
-### プレフィックスルール
+| プレフィックス | ルール |
+| :--- | :--- |
+| feat: | 新規機能 |
+| add: | 追加機能 |
+| imp: | 機能改善 |
+| fix: | バグの修正 |
+| docs: | ドキュメントのみの変更 |
+| style: | 空白、フォーマット、セミコロン追加など |
+| refactor: | 仕様に影響がないコード改善(リファクタ) |
+| perf: | パフォーマンス向上関連 |
+| test: | テスト関連 |
+| chore: | ビルド、補助ツール、ライブラリ関連 |
 
-- feat: 新しい機能
-- fix: バグの修正
-- docs: ドキュメントのみの変更
-- style: 空白、フォーマット、セミコロン追加など
-- refactor: 仕様に影響がないコード改善(リファクタ)
-- perf: パフォーマンス向上関連
-- test: テスト関連
-- chore: ビルド、補助ツール、ライブラリ関連
+~~~sh
+# [Example]
+add: ユーザー一覧機能の追加
 
-### sample description
-
-feat: ユーザー一覧機能の追加
-
-### Exception
-
-リポジトリ作成後の初回のコミットには以下のコミットメッセージが使用します。
-
-- first commit
-
-<a id="anchor-6"></a>
+# リポジトリ作成後の初回のコミットには以下のコミットメッセージが使用します。
+first commit
+~~~
 
 ## 参考リンク
 
